@@ -1,5 +1,5 @@
 {
-  "name": "tracewright",
+  "name": "@withmantle/tracewright",
   "version": "0.0.1",
   "main": "dist/cjs/index.js",
   "typings": "dist/cjs/index.d.ts",
@@ -27,7 +27,8 @@
     "url": "https://github.com/TenKeyLabs/tracewright.git"
   },
   "scripts": {
-    "build": "rimraf dist && rollup -c --bundleConfigAsCjs"
+    "build": "rimraf dist && rollup -c --bundleConfigAsCjs",
+    "changeset:publish": "npm run build && changeset publish"
   },
   "dependencies": {
     "@google-cloud/vertexai": "^1.10.0",
@@ -43,6 +44,10 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@types/node": "^22.13.1",
     "dotenv": "^16.4.7",
+    "eslint": "^9.24.0",
+    "eslint-config-prettier": "^10.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.0",
     "rollup": "^4.41.0",
     "rollup-plugin-clear": "^2.0.7",
     "rollup-plugin-copy": "^3.5.0",
