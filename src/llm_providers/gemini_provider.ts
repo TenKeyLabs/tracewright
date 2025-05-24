@@ -1,23 +1,38 @@
 import {
-  GenerateContentRequest,
   HarmBlockThreshold,
-  HarmCategory,
-  InlineDataPart,
-  Part,
-  TextPart,
-  VertexAI,
+  HarmCategory
 } from "@google-cloud/vertexai";
+import { Content, GenerateContentParameters, GoogleGenAI } from "@google/genai";
 import { GenerateCodeResponse } from "../llm_request";
 import { ClickableDomResult } from "../page_helpers";
 import { LLMProvider } from "./base_provider";
 
 export class GeminiProvider implements LLMProvider {
-  private vertexAI: VertexAI;
+  private gemini: GoogleGenAI;
 
   constructor() {
-    this.vertexAI = new VertexAI({
-      project: "",
-      location: "",
+    const vertexai = process.env.GEMINI_API_KEY ? false : true;
+    const apiVersion = vertexai ? "v1" : undefined
+
+    // Gemini
+    const apiKey = process.env.GEMINI_API_KEY || undefined
+
+    // Vertex AI
+    const location = process.env.GOOGLE_CLOUD_LOCATION || undefined
+    const project = process.env.GOOGLE_CLOUD_PROJECT || undefined
+
+    if (!apiKey && (!project || !location)) {
+      throw new Error(
+        "Either GEMINI_API_KEY or GOOGLE_CLOUD_PROJECT and GOOGLE_CLOUD_LOCATION must be set. https://googleapis.github.io/js-genai/release_docs/index.html#initialization"
+      );
+    }
+
+    this.gemini = new GoogleGenAI({
+      apiKey,
+      project,
+      location,
+      vertexai,
+      apiVersion,
     });
   }
 
@@ -31,6 +46,7 @@ export class GeminiProvider implements LLMProvider {
     currentStepErrorCode: string
   ): Promise<GenerateCodeResponse> {
     const request = this.buildRequest(
+      systemInstruction,
       scenarioText,
       domResult,
       pageUrl,
@@ -39,13 +55,8 @@ export class GeminiProvider implements LLMProvider {
       currentStepErrorCode
     );
 
-    const generativeVisionModel = this.vertexAI.getGenerativeModel({
-      model: "gemini-2.5-pro-preview-05-06",
-      systemInstruction,
-    });
-
-    const response = await generativeVisionModel.generateContent(request);
-    const answer = response.response.candidates?.[0].content.parts[0].text;
+    const response = await this.gemini.models.generateContent(request);
+    const answer = response.candidates?.[0].content?.parts?.[0].text;
 
     if (!answer) {
       return {
@@ -57,59 +68,62 @@ export class GeminiProvider implements LLMProvider {
   }
 
   private buildRequest(
+    systemInstruction: string,
     scenarioText: string,
     domResult: ClickableDomResult,
     pageUrl: string,
     screenshot: Buffer,
     previouslyExecutedCode: string,
     currentStepErrorCode: string
-  ): GenerateContentRequest {
-    const parts: Part[] = [];
+  ): GenerateContentParameters {
+    const parts: Content[] = [];
 
-    parts.push({ text: `Current Page URL: ${pageUrl}` } as TextPart);
+    parts.push({ text: `Current Page URL: ${pageUrl}` } as Content);
 
-    parts.push({ text: "Current Page Screenshot:" } as TextPart);
+    parts.push({ text: "Current Page Screenshot:" } as Content);
     parts.push({
       inlineData: { data: screenshot.toString("base64"), mimeType: "image/png" },
-    } as InlineDataPart);
+    } as Content);
 
-    parts.push({ text: `Current Page Visible HTML: ${domResult.visibleElements}` } as TextPart);
+    parts.push({ text: `Current Page Visible HTML: ${domResult.visibleElements}` } as Content);
 
     if (previouslyExecutedCode !== "") {
-      parts.push({ text: `Already Executed Code:\n${previouslyExecutedCode}` } as TextPart);
+      parts.push({ text: `Already Executed Code:\n${previouslyExecutedCode}` } as Content);
     }
 
     if (currentStepErrorCode !== "") {
       parts.push({
         text: `Failed Code:\n${currentStepErrorCode}`,
-      } as TextPart);
+      } as Content);
     }
 
-    parts.push({ text: scenarioText } as TextPart);
+    parts.push({ text: scenarioText } as Content);
 
     return {
-      contents: [{ role: "user", parts }],
-      generationConfig: {
+      model: process.env.GEMINI_MODEL || "gemini-2.5-pro-preview-05-06",
+      contents: parts,
+      config: {
+        systemInstruction,
         temperature: 0,
+        safetySettings: [
+          {
+            category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+            threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+          },
+          {
+            category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+            threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+          },
+          {
+            category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+            threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+          },
+          {
+            category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+            threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+          },
+        ],
       },
-      safetySettings: [
-        {
-          category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-          threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-        },
-        {
-          category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-          threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-        },
-        {
-          category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-          threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-        },
-        {
-          category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-          threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-        },
-      ],
     };
   }
 
