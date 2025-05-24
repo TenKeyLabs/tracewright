@@ -151,13 +151,13 @@ const getClickableElements = async (page: Page, elementIndex: number): Promise<C
       }
 
       function getAllInputs() {
-        const inputs: NodeListOf<HTMLElement> = document.querySelectorAll("input");
-        const textareas: NodeListOf<HTMLElement> = document.querySelectorAll("textarea");
+        const inputs: HTMLElement[] = Array.from(document.querySelectorAll("input"));
+        const textareas: HTMLElement[] = Array.from(document.querySelectorAll("textarea"));
 
         return [...inputs, ...textareas];
       }
 
-      function isClickableElement(element) {
+      function isClickableElement(element: HTMLElement): boolean {
         const style = window.getComputedStyle(element);
         return element.tagName === "BUTTON" || (style.cursor === "pointer" && element.tagName != "INPUT");
       }

@@ -3,15 +3,9 @@ import chalk from "chalk";
 import { GenerateCodeResponse } from "./llm_request";
 import { clearElementHighlights } from "./page_helpers";
 import { cleanStepFiles, generateStep, performStep } from "./step";
+import { TracewrightOptions } from "./types";
 
-export type TracewrightOptions = {
-  script: string;
-  alternateDoneString?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  beforeEach?: (page: Page) => Promise<any> | any;
-};
-
-export const tracewright = async (page: Page, options: TracewrightOptions) => {
+export const run = async (page: Page, options: TracewrightOptions) => {
   const { script, alternateDoneString, beforeEach } = options;
   const doneString = alternateDoneString || "done";
 
@@ -76,3 +70,5 @@ export const tracewright = async (page: Page, options: TracewrightOptions) => {
     stepCounter++;
   }
 };
+
+export default run;

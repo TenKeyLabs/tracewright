@@ -1,7 +1,8 @@
 import OpenAI from "openai";
-import { ChatCompletionCreateParamsNonStreaming } from "openai/resources/chat";
+import { ChatCompletionCreateParamsNonStreaming } from "openai/resources";
 import { GenerateCodeResponse } from "../llm_request";
-import { CODE_SYSTEM_INSTRUCTION, LLMProvider } from "./base_provider";
+import { ClickableDomResult } from "../page_helpers";
+import { LLMProvider } from "./base_provider";
 
 export class OpenAIProvider implements LLMProvider {
   private openai: OpenAI;
@@ -11,8 +12,9 @@ export class OpenAIProvider implements LLMProvider {
   }
 
   async generateWithContext(
+    systemInstruction: string,
     scenarioText: string,
-    htmlBody: string,
+    domResult: ClickableDomResult,
     pageUrl: string,
     screenshot: Buffer,
     previouslyExecutedCode: string,
@@ -23,7 +25,7 @@ export class OpenAIProvider implements LLMProvider {
       messages: [
         {
           role: "system",
-          content: CODE_SYSTEM_INSTRUCTION,
+          content: systemInstruction,
         },
         {
           role: "user",
@@ -36,7 +38,7 @@ export class OpenAIProvider implements LLMProvider {
                 url: `data:image/png;base64,${screenshot.toString("base64")}`,
               },
             },
-            { type: "text", text: `Current Page HTML:\n${htmlBody}` },
+            { type: "text", text: `Current Page HTML:\n${domResult.visibleElements}` },
             { type: "text", text: `Already Executed Code:\n${previouslyExecutedCode}` },
             ...(currentStepErrorCode
               ? [

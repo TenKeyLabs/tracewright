@@ -53,6 +53,8 @@ export const performStep = async (page: Page, codeResponse: GenerateCodeResponse
   } catch (error: any) {
     return error.stack;
   }
+
+  return undefined
 };
 
 export const cleanStepFiles = () => {
