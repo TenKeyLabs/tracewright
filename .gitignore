@@ -1,6 +1,7 @@
 # Tracewright
 steps/
 temp/
+dist/
 
 # Playwright
 test-results/

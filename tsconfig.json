@@ -2,18 +2,31 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "module": "ESNext",
-    "lib": ["ESNext", "DOM"],
-    "moduleResolution": "Node",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "esModuleInterop": true,
     "noEmit": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "skipLibCheck": true
+    "useUnknownInCatchVariables": false,
+    "declaration": true,
+    "declarationDir": "types/index.d.ts",
   },
-  "include": ["src"]
+  "include": [
+    "src/**/*.ts", // Include all TypeScript files in the src directory
+    "types/**/*" // Include custom types from the types folder
+  ],
+  "exclude": [
+    "node_modules", // Exclude node_modules from compilation
+    "dist" // Exclude the dist folder from compilation
+  ]
 }
