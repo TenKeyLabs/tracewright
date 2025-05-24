@@ -6,23 +6,51 @@ An LLM-powered automation agent for Playwright
 - Provides Playwright locator hooks to help make LLM interactions be more efficient
 - Outputs screenshots, functional Playwright code, and interactable DOM elements for each step
 
-## Example Usage
+## Installation
+Within any Playwright project.
 
 ```bash
-gcloud auth login
+npm install @withmantle/tracewright
 ```
 
+## Usage
+
+example.spec.ts
 ```typescript
-test("Go to a page and let it loose", async ({ page }) => {
-  await page.goto("https://app.website.com/");
+import test from "@playwright/test"
+import tracewright from 'tracewright';
+
+test("Youtube", async ({ page }) => {
+  await page.goto("https://youtube.com");
 
   await tracewright(page, {
-    script: `- Login with the username of ${username}, hit next, password of ${password}
-- Click on the task called "Tracewright Task"
-- Delete the task
-- Once it's not in the list, you're done`,
+    script: `- Search for "boston dynamics do you love me"
+- Open the second video
+- Expand the video description
+- Done`,
   });
 });
+```
+
+## Models
+### Authentication
+[VertexAI](https://cloud.google.com/docs/authentication/application-default-credentials#attached-sa)
+```bash
+gcloud auth application-default login
+export GOOGLE_CLOUD_LOCATION
+```
+or
+[Gemini Studio](https://aistudio.google.com/app/apikey)
+```bash
+export GEMINI_API_KEY=<api key>
+```
+
+### Model Selection
+The default is but this can be overridden with the GEMINI_MODEL environment variable.
+
+ex.
+```
+export GEMINI_MODEL=gemini-2.5-flash-preview-05-20
 ```
 
 ## Why build this tool?
