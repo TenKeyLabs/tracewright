@@ -28,6 +28,7 @@
   },
   "scripts": {
     "build": "rimraf dist && rollup -c --bundleConfigAsCjs",
+    "bump": "changeset version && npm install",
     "changeset:publish": "npm run build && changeset publish"
   },
   "dependencies": {
