@@ -1,6 +1,6 @@
 {
   "name": "@withmantle/tracewright",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/cjs/index.js",
   "typings": "dist/cjs/index.d.ts",
   "module": "dist/esm/index.js",
