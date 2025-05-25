@@ -1,6 +1,7 @@
 # Tracewright
 
 ![Mantle Share Class](https://github.com/user-attachments/assets/58b85891-e6a5-4cc9-b68c-cfa742339165)
+<sup>(16x speed)</sup>
 
 An LLM-powered automation agent for Playwright
 
