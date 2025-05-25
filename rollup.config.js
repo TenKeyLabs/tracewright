@@ -19,13 +19,6 @@ export default [
     external,
     output: [
       {
-        dir: 'dist/cjs', // Output directory for CommonJS format
-        format: 'cjs', // CommonJS format (for Node.js)
-        preserveModules: true, // Keep the original module structure
-        exports: 'auto', // Auto-detect export style
-        sourcemap: true // Enable sourcemap
-      },
-      {
         dir: 'dist/esm', // Output directory for ESM format
         format: 'es', // ES Module format
         preserveModules: true, // Keep the original module structure
