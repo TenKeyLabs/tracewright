@@ -1,5 +1,11 @@
 # tracewright
 
+## 0.0.5
+
+### Patch Changes
+
+- [`a42895a`](https://github.com/TenKeyLabs/tracewright/commit/a42895a4b29f8d8a3c09db46bfe578d5cbca114a) Thanks [@osis](https://github.com/osis)! - chore: moves to a pure ESM build
+
 ## 0.0.4
 
 ### Patch Changes
