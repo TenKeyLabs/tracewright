@@ -37,7 +37,8 @@ test("Youtube", async ({ page }) => {
 [VertexAI](https://cloud.google.com/docs/authentication/application-default-credentials#attached-sa)
 ```bash
 gcloud auth application-default login
-export GOOGLE_CLOUD_LOCATION
+export GOOGLE_CLOUD_LOCATION=<location>
+export GOOGLE_CLOUD_PROJECT=<name>
 ```
 or
 [Gemini Studio](https://aistudio.google.com/app/apikey)
