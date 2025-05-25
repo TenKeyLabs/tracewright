@@ -1,10 +1,13 @@
 # Tracewright
 
+![Mantle Share Class](https://github.com/user-attachments/assets/58b85891-e6a5-4cc9-b68c-cfa742339165)
+
 An LLM-powered automation agent for Playwright
 
 - Efficiently accomplishes executes natural language tasks for websites
 - Provides Playwright locator hooks to help make LLM interactions be more efficient
 - Outputs screenshots, functional Playwright code, and interactable DOM elements for each step
+- Reenforcement loop for errors that occur during steps to encourage recovery
 
 ## Installation
 Within any Playwright project.
@@ -61,3 +64,11 @@ export GEMINI_MODEL=gemini-2.5-flash-preview-05-20
 **Outputs for Agentic Flows** - The output artifacts have a number of useful downstream use cases. Use cases like autogenerating Help Desk articles or generating Marketing videos are being explores. Really excited to hear what the community is coming up with, please share to inspire others!
 
 **Flexibility** - Having the tool written in Typescript and support for Playwright mechanisms into the flow allows you to customize the experience to adjust the different nuances of all the websites out there. If the HTML parser or page waiting logic isn't working for you, you can adjust in realtime and hopefully submit a PR!
+
+## Contributing
+
+Contributions are welcome! Please submit a PR or open an issue.
+
+## License
+
+Apache 2.0
