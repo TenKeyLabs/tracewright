@@ -1,5 +1,11 @@
 # tracewright
 
+## 0.0.6
+
+### Patch Changes
+
+- [`2830861`](https://github.com/TenKeyLabs/tracewright/commit/2830861952145558e9fc21fb572a0dc9598ce518) Thanks [@osis](https://github.com/osis)! - fix: removes dangling references to cjs
+
 ## 0.0.5
 
 ### Patch Changes
