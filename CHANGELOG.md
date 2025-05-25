@@ -1,5 +1,11 @@
 # tracewright
 
+## 0.0.4
+
+### Patch Changes
+
+- [`ce211ba`](https://github.com/TenKeyLabs/tracewright/commit/ce211ba1139a8f9f3d1c9b6e5268b0308f4b7cc0) Thanks [@osis](https://github.com/osis)! - chore: leaner rollup build that doesn't bundle dependencies
+
 ## 0.0.3
 
 ### Patch Changes
