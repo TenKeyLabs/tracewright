@@ -28,7 +28,6 @@ export default [
     ],
     plugins: [
       json(),
-      nodeResolve(),
       commonjs(),
       typescript({
         tsconfig: path.resolve(__dirname, './tsconfig.json'),
@@ -39,12 +38,6 @@ export default [
         plugins: ['@babel/plugin-transform-runtime']
       }),
       terser(),
-      copy({
-        targets: [
-          { src: 'types/index.d.ts', dest: 'dist/cjs' }, // Copy TypeScript types to CJS
-          { src: 'types/index.d.ts', dest: 'dist/esm' } // Copy TypeScript types to ESM
-        ]
-      })
     ]
   }
 ];
