@@ -28,10 +28,10 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          version: npm run bump
           title: "chore: new release"
           commit: "chore: new release"
-          publish: npm run publish
+          version: npm run bump
+          publish: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

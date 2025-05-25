@@ -1,8 +1,8 @@
 {
   "name": "@withmantle/tracewright",
   "version": "0.0.5",
-  "main": "dist/cjs/index.js",
-  "typings": "dist/cjs/index.d.ts",
+  "main": "dist/esm/index.js",
+  "typings": "dist/esm/index.d.ts",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "files": [
@@ -29,7 +29,7 @@
   "scripts": {
     "build": "rimraf dist && rollup -c --bundleConfigAsCjs",
     "bump": "changeset version && npm install",
-    "publish": "npm run build && changeset publish"
+    "release": "npm run build && changeset publish"
   },
   "dependencies": {
     "@google-cloud/vertexai": "^1.10.0",
