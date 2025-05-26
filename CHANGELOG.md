@@ -1,5 +1,15 @@
 # tracewright
 
+## 0.1.0
+
+### Minor Changes
+
+- [`cb16a12`](https://github.com/TenKeyLabs/tracewright/commit/cb16a122b8dc26ae3d934cb13b5267e28f5ea724) Thanks [@osis](https://github.com/osis)! - feat: outputs token usage after completing a script
+
+### Patch Changes
+
+- [`cb16a12`](https://github.com/TenKeyLabs/tracewright/commit/cb16a122b8dc26ae3d934cb13b5267e28f5ea724) Thanks [@osis](https://github.com/osis)! - chore: removes @google-cloud/vertexai as a dependency
+
 ## 0.0.6
 
 ### Patch Changes
