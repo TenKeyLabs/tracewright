@@ -73,3 +73,7 @@ Contributions are welcome! Please submit a PR or open an issue.
 ## License
 
 Apache 2.0
+
+## About Mantle
+
+The team at [Mantle](https://withmantle.com) is building modern solutions for managing private assets: from Cap Tables to Capital Calls. [Mantle's equity management](https://withmantle.com/solutions/cap-table-management) platform is a founder-friendly platform built from the ground-up to manage your startup's cap table. Our [institutional LP solution](https://withmantle.com/solutions/portal) unlocks real-time investment intelligence via automated, AI-powered workflows so LPs can make faster, data-driven decisions.
