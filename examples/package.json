@@ -1,0 +1,13 @@
+{
+  "name": "tracewright-examples",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.52.0",
+    "@withmantle/tracewright": "^0.0.6"
+  }
+}
