@@ -77,7 +77,7 @@ describe("LLMRequestHandler", () => {
 
   describe("generateWithContext", () => {
     it("should call the provider's generateWithContext method with all arguments", async () => {
-      const expectedResponse: GenerateCodeResponse = { code: "console.log('test');" };
+      const expectedResponse: GenerateCodeResponse = { code: "console.log('test');", inputTokenCount: 10, outputTokenCount: 5 };
       mockGenerateWithContext.mockResolvedValue(expectedResponse);
 
       const result = await handler.generateWithContext(
@@ -106,7 +106,7 @@ describe("LLMRequestHandler", () => {
     });
 
     it("should return the response from the provider's method", async () => {
-      const expectedResponse: GenerateCodeResponse = { code: "await click('#id');" };
+      const expectedResponse: GenerateCodeResponse = { code: "await click('#id');", inputTokenCount: 20, outputTokenCount: 10 };
       mockGenerateWithContext.mockResolvedValue(expectedResponse);
 
       const result = await handler.generateWithContext(

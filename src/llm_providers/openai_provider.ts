@@ -57,9 +57,14 @@ export class OpenAIProvider implements LLMProvider {
     } as ChatCompletionCreateParamsNonStreaming);
 
     const answer = response.choices[0]?.message?.content;
+    const inputTokenCount = response.usage?.prompt_tokens || 0;
+    const outputTokenCount = response.usage?.completion_tokens || 0;
+
     if (!answer) {
       return {
         code: "done",
+        inputTokenCount,
+        outputTokenCount,
       };
     }
 
@@ -75,6 +80,6 @@ export class OpenAIProvider implements LLMProvider {
       generatedCode = answer;
     }
 
-    return { code: generatedCode.trim() };
+    return { code: generatedCode.trim(), inputTokenCount, outputTokenCount};
   }
 }
