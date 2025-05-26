@@ -27,12 +27,12 @@
     "url": "https://github.com/TenKeyLabs/tracewright.git"
   },
   "scripts": {
+    "test": "vitest",
     "build": "rimraf dist && rollup -c --bundleConfigAsCjs",
     "bump": "changeset version && npm install",
     "release": "npm run build && changeset publish"
   },
   "dependencies": {
-    "@google-cloud/vertexai": "^1.10.0",
     "@google/genai": "^1.0.1",
     "chalk": "^5.4.1",
     "openai": "^4.89.0"

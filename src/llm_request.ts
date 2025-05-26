@@ -3,6 +3,8 @@ import { ClickableDomResult } from "./page_helpers";
 
 export type GenerateCodeResponse = {
   code: string;
+  inputTokenCount: number;
+  outputTokenCount: number;
 };
 
 export class LLMRequestHandler {

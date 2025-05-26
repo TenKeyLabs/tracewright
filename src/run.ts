@@ -10,8 +10,10 @@ export const run = async (page: Page, options: TracewrightOptions) => {
   const doneString = alternateDoneString || "done";
 
   let stepCounter = 1;
+  let inputTokenTotalCount = 0;
+  let outputTokenTotalCount = 0;
   const allExecutedStepCode: string[] = [];
-  let currentStopCodeResponse: GenerateCodeResponse;
+  let currentStepCodeResponse: GenerateCodeResponse;
   let currentStepErroredCode: string[] = [];
 
   cleanStepFiles();
@@ -38,23 +40,25 @@ export const run = async (page: Page, options: TracewrightOptions) => {
     }
 
     console.info("generating code...");
-    currentStopCodeResponse = await generateStep(
+    currentStepCodeResponse = await generateStep(
       page,
       script,
       stepCounter,
       allExecutedStepCode.join("\n"),
       currentStepErroredCode.join("\n\n")
     );
-    console.info(chalk.gray(currentStopCodeResponse.code));
+    console.info(chalk.gray(currentStepCodeResponse.code));
 
     await clearElementHighlights(page);
 
-    if (currentStopCodeResponse.code === doneString) {
-      console.info(chalk.green("script completed"));
+    inputTokenTotalCount += currentStepCodeResponse.inputTokenCount;
+    outputTokenTotalCount += currentStepCodeResponse.outputTokenCount;
+
+    if (currentStepCodeResponse.code === doneString) {
       break;
     }
 
-    const stepErrorStack = await performStep(page, currentStopCodeResponse);
+    const stepErrorStack = await performStep(page, currentStepCodeResponse);
     if (stepErrorStack) {
       console.error(chalk.red("error executing step"), stepCounter);
       console.error(stepErrorStack);
@@ -62,13 +66,19 @@ export const run = async (page: Page, options: TracewrightOptions) => {
       continue;
     }
 
-    allExecutedStepCode.push(currentStopCodeResponse.code);
+    allExecutedStepCode.push(currentStepCodeResponse.code);
     currentStepErroredCode = [];
 
     console.info(chalk.green("*** end of step"), stepCounter);
 
     stepCounter++;
   }
+
+  console.info(chalk.green("*** script completed"));
+  console.info(chalk.green("steps executed:\t"), stepCounter);
+  console.info(chalk.green("input tokens:\t"), inputTokenTotalCount);
+  console.info(chalk.green("output tokens:\t"), outputTokenTotalCount);
+
 };
 
 export default run;

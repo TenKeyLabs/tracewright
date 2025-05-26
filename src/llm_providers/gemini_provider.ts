@@ -1,8 +1,4 @@
-import {
-  HarmBlockThreshold,
-  HarmCategory
-} from "@google-cloud/vertexai";
-import { Content, GenerateContentParameters, GoogleGenAI } from "@google/genai";
+import { Content, GenerateContentParameters, GoogleGenAI, HarmBlockThreshold, HarmCategory } from "@google/genai";
 import { GenerateCodeResponse } from "../llm_request";
 import { ClickableDomResult } from "../page_helpers";
 import { LLMProvider } from "./base_provider";
@@ -56,15 +52,24 @@ export class GeminiProvider implements LLMProvider {
     );
 
     const response = await this.gemini.models.generateContent(request);
-    const answer = response.candidates?.[0].content?.parts?.[0].text;
+    const answer = response.candidates?.[0]?.content?.parts?.[0]?.text;
+    const inputTokenCount = response.usageMetadata?.promptTokenCount || 0;
+    const outputTokenCount = response.usageMetadata?.candidatesTokenCount || 0;
 
     if (!answer) {
       return {
         code: "done",
+        inputTokenCount: inputTokenCount,
+        outputTokenCount: outputTokenCount,
       };
     }
 
-    return this.parseResponse(answer);
+
+    return {
+      code: this.parseCodeResponse(answer),
+      inputTokenCount,
+      outputTokenCount,
+    }
   }
 
   private buildRequest(
@@ -127,7 +132,7 @@ export class GeminiProvider implements LLMProvider {
     };
   }
 
-  private parseResponse(answer: string): GenerateCodeResponse {
+  private parseCodeResponse(answer: string): string{
     let generatedCode: string;
     if (answer.includes("```")) {
       const regex = /```.*?\n(.*)\n```/gs;
@@ -140,6 +145,6 @@ export class GeminiProvider implements LLMProvider {
       generatedCode = answer;
     }
 
-    return { code: generatedCode.trim() };
+    return generatedCode.trim();
   }
 }
