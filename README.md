@@ -2,11 +2,11 @@
 
 A regression test automation agent for Playwright
 
-![Mantle Share Class](https://github.com/user-attachments/assets/58b85891-e6a5-4cc9-b68c-cfa742339165)
+![Mantle Share Class](https://raw.githubusercontent.com/TenKeyLabs/tracewright/images/images/tracewright-mantle-shareclass.gif)
 <sup>(16x speed)</sup>
 
 - Attempts to execute BDD-like (behavior-driven development) tasks for websites
-- Saves *functional Playwright code*, screenshots, and interactable HTML elements for each step
+- Saves **functional Playwright code**, screenshots, and interactable HTML elements for each step
 - Provides Playwright locator hooks to help make LLM interactions be more efficient
 - Reenforcement loop for errors that occur during steps to encourage recovery
 
