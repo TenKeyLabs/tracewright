@@ -47,7 +47,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@types/node": "^22.13.1",
     "dotenv": "^16.4.7",
-    "eslint": "^9.24.0",
+    "eslint": "^9.28.0",
     "eslint-config-prettier": "^10.1.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.0",
