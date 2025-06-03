@@ -16,7 +16,7 @@ hero:
       link: https://github.com/TenKeyLabs/tracewright
 
 features:
-  - title: Natual Language Instructions
+  - title: Natural Language Instructions
     icon: 📝
     details: Attempts to execute BDD-like (behavior-driven development) tasks for websites
   - title: Agentic Workflow
