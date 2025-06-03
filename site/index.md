@@ -16,7 +16,7 @@ hero:
       link: https://github.com/TenKeyLabs/tracewright
 
 features:
-  - title: Natual Language Instructions
+  - title: Natural Language Instructions
     icon: 📝
     details: Attempts to execute BDD-like (behavior-driven development) tasks for websites
   - title: Agentic Workflow
@@ -26,8 +26,8 @@ features:
     icon:
       src: https://playwright.dev/img/playwright-logo.svg
     details: Provides Playwright locator hooks to help make LLM interactions be more efficient
-
 ---
+
 ---
 
 ![](https://raw.githubusercontent.com/TenKeyLabs/tracewright/images/images/tracewright-mantle-shareclass.gif)
