@@ -7,7 +7,7 @@ hero:
   text: "AI Powered Regression Tests for Playwright"
   tagline: Autogenerate your regression tests using AI
   image:
-    dark: /tracewright-blue.png
+    dark: /tracewright-white.png
     light: /tracewright-black.png
     alt: Tracewright logo
   actions:

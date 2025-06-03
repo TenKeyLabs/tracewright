@@ -2,25 +2,17 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  description: "Tracewright a regression test automation agent for Playwright",
+  // app level config options
+  lang: 'en-US',
+  title: 'Tracewright | Regression test automation agent for Playwright',
+  description: "A regression test automation agent for Playwright",
+  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      // { text: 'Home', link: '/' },
-      // { text: 'Examples', link: '/markdown-examples' }
-    ],
-
-    // sidebar: [
-    //   {
-    //     text: 'Examples',
-    //     items: [
-    //       { text: 'Markdown Examples', link: '/markdown-examples' },
-    //       { text: 'Runtime API Examples', link: '/api-examples' }
-    //     ]
-    //   }
-    // ],
+    siteTitle: 'Tracewright',
     logo: {
-      src: './tracewright-blue.png',
+      light: './tracewright-icon-black.png',
+      dark: './tracewright-icon-white.png',
       alt: 'Tracewright logo',
     },
     footer: {
