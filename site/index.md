@@ -26,8 +26,8 @@ features:
     icon:
       src: https://playwright.dev/img/playwright-logo.svg
     details: Provides Playwright locator hooks to help make LLM interactions be more efficient
-
 ---
+
 ---
 
 ![](https://raw.githubusercontent.com/TenKeyLabs/tracewright/images/images/tracewright-mantle-shareclass.gif)
