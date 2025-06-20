@@ -33,7 +33,7 @@
     "release": "npm run build && changeset publish"
   },
   "dependencies": {
-    "@google/genai": "^1.0.1",
+    "@google/genai": "^1.5.1",
     "chalk": "^5.4.1",
     "openai": "^5.3.0"
   },
