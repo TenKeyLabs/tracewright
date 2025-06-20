@@ -266,7 +266,7 @@ describe("GeminiProvider", () => {
         );
         expect(mockGenerateContent).toHaveBeenCalledTimes(1);
         const calledWith = mockGenerateContent.mock.calls[0][0] as GenerateContentParameters;
-        expect(calledWith.model).toBe("gemini-2.5-pro-preview-05-06");
+        expect(calledWith.model).toBe("gemini-2.5-flash");
     });
 
     it("should throw error if parseCodeResponse finds no matches in a malformed code block", async () => {
