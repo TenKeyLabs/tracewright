@@ -55,7 +55,7 @@ The default is but this can be overridden with the GEMINI_MODEL environment vari
 
 ex.
 ```
-export GEMINI_MODEL=gemini-2.5-flash-preview-05-20
+export GEMINI_MODEL=gemini-2.5-pro
 ```
 
 ## Why build this tool?
