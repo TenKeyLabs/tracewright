@@ -24,7 +24,7 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/TenKeyLabs/tracewright' },
       { icon: 'x', link: 'https://x.com/withmantle' },
       { icon: 'linkedin', link: 'https://linkedin.com/company/withmantle' },
-      { icon: 'bluesky', link: 'https://bsky.app/profile/did:plc:kxlpyb5fq52a34jmgazgkum7' }
+      { icon: 'bluesky', link: 'https://bsky.app/profile/withmantle.com' }
     ]
   }
 })
