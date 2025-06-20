@@ -105,7 +105,7 @@ export class GeminiProvider implements LLMProvider {
     parts.push({ text: scenarioText } as Content);
 
     return {
-      model: process.env.GEMINI_MODEL || "gemini-2.5-pro-preview-05-06",
+      model: process.env.GEMINI_MODEL || "gemini-2.5-flash",
       contents: parts,
       config: {
         systemInstruction,
