@@ -1,5 +1,11 @@
 # tracewright
 
+## 0.1.1
+
+### Patch Changes
+
+- [#43](https://github.com/TenKeyLabs/tracewright/pull/43) [`3ef01e5`](https://github.com/TenKeyLabs/tracewright/commit/3ef01e5ce2034d63b642e25cd48f3057cea461a8) Thanks [@osis](https://github.com/osis)! - chore: updates Gemini model version to GA 2.5 Flash
+
 ## 0.1.0
 
 ### Minor Changes
