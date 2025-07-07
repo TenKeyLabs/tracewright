@@ -49,7 +49,7 @@
     "dotenv": "^16.4.7",
     "eslint": "^9.28.0",
     "eslint-config-prettier": "^10.1.0",
-    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prettier": "^5.5.1",
     "rollup": "^4.44.1",
     "rollup-plugin-clear": "^2.0.7",
