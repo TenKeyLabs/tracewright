@@ -1,13 +1,11 @@
 import { Page } from "@playwright/test";
 import fs from "fs";
 import { CODE_GENERATION_PROMPT, CODE_SYSTEM_INSTRUCTION } from "./llm_providers/base_provider";
-import { GeminiProvider } from "./llm_providers/gemini_provider";
 import { GenerateCodeResponse, LLMRequestHandler } from "./llm_request";
 import { executeCode, getInteractiveHTML } from "./page_helpers";
 
-const llmHandler = new LLMRequestHandler(new GeminiProvider());
-
 export const generateStep = async (
+  llmHandler: LLMRequestHandler,
   page: Page,
   scenarioText: string,
   stepCount: number,
@@ -54,7 +52,7 @@ export const performStep = async (page: Page, codeResponse: GenerateCodeResponse
     return error.stack;
   }
 
-  return undefined
+  return undefined;
 };
 
 export const cleanStepFiles = () => {
