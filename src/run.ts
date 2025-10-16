@@ -1,13 +1,17 @@
 import { Page } from "@playwright/test";
 import chalk from "chalk";
-import { GenerateCodeResponse } from "./llm_request";
+import { LLMProvider } from "./llm_providers/base_provider";
+import { GeminiProvider } from "./llm_providers/gemini_provider";
+import { GenerateCodeResponse, LLMRequestHandler } from "./llm_request";
 import { clearElementHighlights } from "./page_helpers";
 import { cleanStepFiles, generateStep, performStep } from "./step";
 import { TracewrightOptions } from "./types";
 
-export const run = async (page: Page, options: TracewrightOptions) => {
+export const run = async (page: Page, options: TracewrightOptions, llmProvider?: LLMProvider) => {
   const { script, alternateDoneString, beforeEach } = options;
   const doneString = alternateDoneString || "done";
+
+  const llmHandler = new LLMRequestHandler(llmProvider || new GeminiProvider());
 
   let stepCounter = 1;
   let inputTokenTotalCount = 0;
@@ -41,6 +45,7 @@ export const run = async (page: Page, options: TracewrightOptions) => {
 
     console.info("generating code...");
     currentStepCodeResponse = await generateStep(
+      llmHandler,
       page,
       script,
       stepCounter,
@@ -78,7 +83,6 @@ export const run = async (page: Page, options: TracewrightOptions) => {
   console.info(chalk.green("steps executed:\t"), stepCounter);
   console.info(chalk.green("input tokens:\t"), inputTokenTotalCount);
   console.info(chalk.green("output tokens:\t"), outputTokenTotalCount);
-
 };
 
 export default run;
