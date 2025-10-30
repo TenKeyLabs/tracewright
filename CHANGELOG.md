@@ -1,5 +1,11 @@
 # tracewright
 
+## 0.1.2
+
+### Patch Changes
+
+- [#111](https://github.com/TenKeyLabs/tracewright/pull/111) [`709ed01`](https://github.com/TenKeyLabs/tracewright/commit/709ed01ea0e37fa4ab6e357cc6ca57e031325db3) Thanks [@bobby-chan](https://github.com/bobby-chan)! - Allow llmProvider to be overridden on executing run
+
 ## 0.1.1
 
 ### Patch Changes
